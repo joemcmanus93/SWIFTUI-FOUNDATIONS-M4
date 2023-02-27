@@ -13,10 +13,11 @@ struct RecipeFeaturedView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading){
+        VStack(alignment: .leading, spacing: 0){
             
             Text("Featured Recipes")
                 .padding(.leading)
+                .padding(.top, 40)
                 .bold()
                 .font(.largeTitle)
             
@@ -36,15 +37,17 @@ struct RecipeFeaturedView: View {
                                     .foregroundColor(.white)
                                 
                                 VStack(spacing: 0){
-                                    Image("lasagna")
+                                    Image(model.recipes[index].image)
                                         .resizable()
                                         .clipped()
-                                    Text("Lasagna")
+                                    Text(model.recipes[index].name)
                                         .padding(5)
                                 }
+                                
                             } .frame(width: geo.size.width - 40, height: geo.size.height - 100, alignment: .center)
                                 .cornerRadius(20)
                                 .shadow(radius: 10)
+                                .shadow(color: .black, radius: 10, x:-5, y: 5)
                            
                         }
                     }
@@ -55,14 +58,15 @@ struct RecipeFeaturedView: View {
             
             VStack(alignment: .leading, spacing: 10) {
                  Text("PreperationTime:")
-                font(.headline)
+                    .font(.headline)
                 Text("1 Hour")
                 Text("Highlights:")
-                font(.headline)
+                    .font(.headline)
                 Text("Healthy, Hearty")
             }
-            .padding(.leading)
+            .padding([.leading, .bottom])
         }
+        .padding()
         
         }
         
