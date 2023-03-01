@@ -11,9 +11,14 @@ struct RecipeFeaturedView: View {
     
     @EnvironmentObject var model:RecipeModel
     @State var isDetailViewShowing = false
+    @State var tabSelectionIndex = 0
+    
+   
     
     var body: some View {
         
+        let featuredRecipes = model.recipes.filter({ $0.featured })
+       
         VStack(alignment: .leading, spacing: 0){
             
             Text("Featured Recipes")
@@ -22,49 +27,46 @@ struct RecipeFeaturedView: View {
                 .bold()
                 .font(.largeTitle)
             
-            GeometryReader { geo in
+            GeometryReader {     geo in
               
-                TabView {
+                TabView (selection: $tabSelectionIndex) {
                     
                     //            loop through each recipe
-                    ForEach(0..<model.recipes.count, id: \.self){ index in
+                    ForEach(0..<featuredRecipes.count, id: \.self){ index in
                         
-                        //                only show those that should be featured
-                        if model.recipes[index].featured == true {
-                            
+                   
+                        
 //                            recipe card button
-                            Button(action: {
-                                
+                        Button(action: {
+                            
 //                                show the recipe detail sheet
-                                self.isDetailViewShowing = true
-                            }, label: {
+                            self.isDetailViewShowing = true
+                        }, label: {
+                            
+                            //                    recipe card
+                            ZStack{
+                                Rectangle()
+                                    .foregroundColor(.white)
                                 
-                                //                    recipe card
-                                ZStack{
-                                    Rectangle()
-                                        .foregroundColor(.white)
-                                    
-                                    VStack(spacing: 0){
-                                        Image(model.recipes[index].image)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .clipped()
-                                        Text(model.recipes[index].name)
-                                            .padding(5)
-                                    }
+                                VStack(spacing: 0){
+                                    Image(featuredRecipes[index].image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .clipped()
+                                    Text(featuredRecipes[index].name)
+                                        .padding(5)
                                 }
-                            })
-                            .sheet(isPresented: $isDetailViewShowing) {
-//                                show the recipe detial view
-                                RecipeDetailView(recipe: model.recipes[index])
                             }
-                            .buttonStyle(PlainButtonStyle())
-                             .frame(width: geo.size.width - 40, height: geo.size.height - 100, alignment: .center)
-                                .cornerRadius(20)
-                                .shadow(radius: 10)
-                                .shadow(color: .black, radius: 10, x:-5, y: 5)
-                           
-                        }
+                        })
+                        .tag(index)
+                        
+                        .buttonStyle(PlainButtonStyle())
+                         .frame(width: geo.size.width - 40, height: geo.size.height - 100, alignment: .center)
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                            .shadow(color: .black, radius: 10, x:-5, y: 5)
+                       
+                        
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
@@ -74,18 +76,20 @@ struct RecipeFeaturedView: View {
             VStack(alignment: .leading, spacing: 10) {
                  Text("PreperationTime:")
                     .font(.headline)
-                Text("1 Hour")
+                Text(model.recipes[tabSelectionIndex].prepTime)
                 Text("Highlights:")
                     .font(.headline)
-                Text("Healthy, Hearty")
+                RecipeHighlights(highlights: model.recipes[tabSelectionIndex].highlights)
             }
             .padding([.leading, .bottom])
         }
-        .padding()
-        
+        .sheet(isPresented: $isDetailViewShowing) {
+//                                show the recipe detial view
+            RecipeDetailView(recipe: featuredRecipes[tabSelectionIndex])
         }
-        
-}
+            }
+    }
+
 
 struct RecipeFeaturedView_Previews: PreviewProvider {
     static var previews: some View {

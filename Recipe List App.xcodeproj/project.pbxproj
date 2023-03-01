@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80254B229AEBCE100598447 /* RecipeHighlights.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80254B129AEBCE100598447 /* RecipeHighlights.swift */; };
 		D80E6DFA29AD49C900799FD2 /* Rational.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80E6DF929AD49C900799FD2 /* Rational.swift */; };
 		D8377E62299709AC00F6D0B5 /* Recipe_List_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8377E61299709AC00F6D0B5 /* Recipe_List_App.swift */; };
 		D8377E64299709AC00F6D0B5 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8377E63299709AC00F6D0B5 /* RecipeListView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80254B129AEBCE100598447 /* RecipeHighlights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeHighlights.swift; sourceTree = "<group>"; };
 		D80E6DF929AD49C900799FD2 /* Rational.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rational.swift; sourceTree = SOURCE_ROOT; };
 		D8377E5E299709AC00F6D0B5 /* Recipe List App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe List App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8377E61299709AC00F6D0B5 /* Recipe_List_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_List_App.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D8FDF78F29A6A64900E56BD0 /* RecipeFeaturedView.swift */,
 				D8377E63299709AC00F6D0B5 /* RecipeListView.swift */,
 				D8377E802999855200F6D0B5 /* RecipeDetailView.swift */,
+				D80254B129AEBCE100598447 /* RecipeHighlights.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				D8377E64299709AC00F6D0B5 /* RecipeListView.swift in Sources */,
 				D8377E812999855200F6D0B5 /* RecipeDetailView.swift in Sources */,
+				D80254B229AEBCE100598447 /* RecipeHighlights.swift in Sources */,
 				D80E6DFA29AD49C900799FD2 /* Rational.swift in Sources */,
 				D8377E792997113000F6D0B5 /* RecipeModel.swift in Sources */,
 				D8377E7729970EBE00F6D0B5 /* Recipe.swift in Sources */,
